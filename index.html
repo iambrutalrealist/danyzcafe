@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>danyzcafe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Fixed header -->
+  <header class="site-header">
+    <nav>
+      <a href="#" class="nav-logo">danyzcafe</a>
+      <div class="nav-right">
+        <button id="lang-btn" class="nav-lang" aria-label="Switch language">EN</button>
+        <button class="three-dots" id="three-dots" aria-label="Navigation">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Nav overlay -->
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+    <button class="nav-overlay-close" id="nav-close" aria-label="Close menu">&#x2715;</button>
+    <ul class="nav-overlay-links">
+      <li><a href="#menu-section"    data-sr="Meni"       data-en="Menu">Meni</a></li>
+      <li><a href="#booking-section" data-sr="Rezervacija" data-en="Make a Reservation">Rezervacija</a></li>
+      <li><a href="#about-section"   data-sr="O Nama"     data-en="About Us">O Nama</a></li>
+      <li><a href="#location-section" data-sr="Lokacija"  data-en="Our Location">Lokacija</a></li>
+      <li><a href="#booking-section" data-sr="Kontakt"    data-en="Contact">Kontakt</a></li>
+      <li><a href="#gallery-section" id="gallery-link" data-sr="Galerija" data-en="Gallery">Galerija</a></li>
+    </ul>
+  </div>
+
+  <!-- Floating: Book a Reservation -->
+  <div class="float-btn-wrap" id="float-book">
+    <a href="#booking-section" class="btn-ghost-dark">
+      <span data-sr="Rezervišite Sto" data-en="Book a Reservation">Rezervišite Sto</span>
+      <span class="btn-arrow">&#x2192;</span>
+    </a>
+  </div>
+
+  <!-- Floating: Location -->
+  <div class="float-btn-wrap" id="float-location">
+    <a href="#location-section" class="btn-ghost-light">
+      <span data-sr="Na&#353;a Lokacija" data-en="Our Location">Na&#353;a Lokacija</span>
+      <span class="btn-arrow">&#x2193;</span>
+    </a>
+  </div>
+
+  <!-- Corner FAB: jump to menu -->
+  <a href="#menu-section" id="corner-btn" aria-label="Open menu">
+    <svg id="corner-cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 9h12v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V9z"/>
+      <path d="M16 11h2.5a2 2 0 0 1 0 4H16"/>
+      <path d="M7 4.5c0 1-1 1.2-1 2.2"/>
+      <path d="M11 4.5c0 1-1 1.2-1 2.2"/>
+      <path d="M14 4.5c0 1-1 1.2-1 2.2"/>
+    </svg>
+  </a>
+
+  <!-- Hero (standalone 100vh) -->
+  <section class="hero-standalone" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="section-label hero-label">DANYZCAFE</span>
+      <h1 class="hero-heading"
+          data-sr-words="Ro&#273;eno|iz|strasti."
+          data-en-words="Born|from|obsession.">
+        <span class="word">Ro&#273;eno</span>
+        <span class="word">iz</span>
+        <span class="word">strasti.</span>
+      </h1>
+      <p class="hero-tagline"
+         data-sr="Premium kafa i poslastice, pa&#382;ljivo pripremljeni."
+         data-en="Premium coffee &amp; treats, crafted with care.">
+        Premium kafa i poslastice, pa&#382;ljivo pripremljeni.
+      </p>
+    </div>
+    <div class="hero-bottom">
+      <a href="#menu-section" class="btn-ghost-dark hero-menu-btn">
+        <span data-sr="Meni" data-en="Menu">Meni</span>
+      </a>
+      <a href="#booking-section" class="btn-ghost-dark hero-menu-btn">
+        <span data-sr="Rezervi&#353;ite Sto" data-en="Reserve a Table">Rezervi&#353;ite Sto</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Canvas (fixed, full viewport) -->
+  <div class="canvas-wrap" id="canvas-wrap">
+    <canvas id="canvas"></canvas>
+  </div>
+
+
+  <!-- Scroll container (canvas-driven, 5 chapters) -->
+  <div id="scroll-container">
+
+    <!-- 001 / Poreklo — left-aligned -->
+    <section class="scroll-section section-content align-left"
+             data-enter="8" data-leave="22" data-animation="slide-left">
+      <div class="section-inner">
+        <span class="section-label"
+              data-sr="001 / Poreklo"
+              data-en="001 / Origin">001 / Poreklo</span>
+        <h2 class="section-heading"
+            data-sr="Zrno koje govori."
+            data-en="A bean that speaks.">Zrno koje govori.</h2>
+        <p class="section-body"
+           data-sr="Birano sa jednog brda u Etiopiji. Svaka berba, ru&#269;no odabrana, &#269;uva svoj karakter sve do va&#353;eg gutljaja."
+           data-en="Chosen from a single hill in Ethiopia. Each harvest, handpicked, carries its character all the way to your sip.">
+          Birano sa jednog brda u Etiopiji. Svaka berba, ru&#269;no odabrana, &#269;uva svoj karakter sve do va&#353;eg gutljaja.
+        </p>
+      </div>
+    </section>
+
+    <!-- 002 / Ruka — right-aligned -->
+    <section class="scroll-section section-content align-right"
+             data-enter="28" data-leave="42" data-animation="slide-right">
+      <div class="section-inner">
+        <span class="section-label"
+              data-sr="002 / Ruka"
+              data-en="002 / The Hand">002 / Ruka</span>
+        <h2 class="section-heading"
+            data-sr="Ruka je merilo."
+            data-en="The hand is the measure.">Ruka je merilo.</h2>
+        <p class="section-body"
+           data-sr="Devet sekundi pre-infuzije. Trideset &#353;est stepeni. Nije recept &#8212; to je posve&#263;enost."
+           data-en="Nine seconds of pre-infusion. Thirty-six degrees. Not a recipe &#8212; a devotion.">
+          Devet sekundi pre-infuzije. Trideset &#353;est stepeni. Nije recept &#8212; to je posve&#263;enost.
+        </p>
+      </div>
+    </section>
+
+    <!-- 003 / Trenutak — centered quote -->
+    <section class="scroll-section section-content align-center"
+             data-enter="48" data-leave="58" data-animation="scale-up">
+      <div class="section-inner section-inner--quote">
+        <span class="section-label"
+              data-sr="003 / Trenutak"
+              data-en="003 / The Moment">003 / Trenutak</span>
+        <h2 class="section-heading quote-heading"
+            data-sr="Najti&#353;i&#10;trenutak dana."
+            data-en="The quietest&#10;moment of the day.">Najti&#353;i<br>trenutak dana.</h2>
+      </div>
+    </section>
+
+    <!-- 004 / Hladna Preciznost — right-aligned -->
+    <section class="scroll-section section-content align-right"
+             data-enter="64" data-leave="76" data-animation="slide-right">
+      <div class="section-inner">
+        <span class="section-label"
+              data-sr="004 / Hladna Preciznost"
+              data-en="004 / Cold Precision">004 / Hladna Preciznost</span>
+        <h2 class="section-heading"
+            data-sr="Hladno.&#10;Precizno.&#10;Va&#353;e."
+            data-en="Cold.&#10;Precise.&#10;Yours.">Hladno.<br>Precizno.<br>Va&#353;e.</h2>
+        <p class="section-body"
+           data-sr="Munjevito ohla&#273;eno pri vrhuncu ekstrakcije. Zape&#269;a&#263;eno u savr&#353;enom momentu &#8212; led netaknut, aroma &#382;iva."
+           data-en="Flash-chilled at peak extraction. Sealed at the perfect moment &#8212; ice intact, flavour alive.">
+          Munjevito ohla&#273;eno pri vrhuncu ekstrakcije. Zape&#269;a&#263;eno u savr&#353;enom momentu &#8212; led netaknut, aroma &#382;iva.
+        </p>
+      </div>
+    </section>
+
+    <!-- 005 / Sati — working hours, centered -->
+    <section class="scroll-section section-content align-center"
+             data-enter="82" data-leave="94" data-animation="scale-up">
+      <div class="section-inner section-inner--hours">
+        <span class="section-label"
+              data-sr="005 / Sati"
+              data-en="005 / Hours">005 / Sati</span>
+        <h2 class="section-heading hours-heading"
+            data-sr="Otvoreno&#10;svaki dan."
+            data-en="Open&#10;every day.">Otvoreno<br>svaki dan.</h2>
+        <ul class="hours-list">
+          <li>
+            <span class="hours-day" data-sr="Pon &#8211; Pet" data-en="Mon &#8211; Fri">Pon &#8211; Pet</span>
+            <span class="hours-time">07:00 &#8211; 22:00</span>
+          </li>
+          <li>
+            <span class="hours-day" data-sr="Subota" data-en="Saturday">Subota</span>
+            <span class="hours-time">08:00 &#8211; 23:00</span>
+          </li>
+          <li>
+            <span class="hours-day" data-sr="Nedelja" data-en="Sunday">Nedelja</span>
+            <span class="hours-time">09:00 &#8211; 21:00</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </div><!-- /scroll-container -->
+
+  <!-- ═══════════════════════════════════════════════
+       NORMAL FLOW — below scroll animation
+  ════════════════════════════════════════════════ -->
+
+  <!-- Best Sellers / Top 3 -->
+  <section id="bestsellers-section">
+    <div class="bestsellers-inner">
+
+      <div class="bestsellers-header">
+        <span class="section-label"
+              data-sr="Najpopularnije"
+              data-en="Most Popular">Najpopularnije</span>
+        <h2 class="bestsellers-title"
+            data-sr="Tri omiljena."
+            data-en="Three favorites.">Tri omiljena.</h2>
+        <p class="bestsellers-sub"
+           data-sr="Po onome &#353;to nam gosti najvi&#353;e tra&#382;e."
+           data-en="What our regulars come back for.">
+          Po onome &#353;to nam gosti najvi&#353;e tra&#382;e.
+        </p>
+      </div>
+
+      <div class="bestsellers-grid">
+        <article class="bestseller-card">
+          <div class="bestseller-img" style="background-image:url('gallery/coffeilo5.jpg');"></div>
+          <div class="bestseller-body">
+            <span class="bestseller-num">01</span>
+            <h3 class="bestseller-name" data-sr="Ledeni Matcha" data-en="Iced Matcha">Ledeni Matcha</h3>
+            <p class="bestseller-desc"
+               data-sr="Sve&#382;a, zemljana, energi&#269;na."
+               data-en="Fresh, earthy, energizing.">Sve&#382;a, zemljana, energi&#269;na.</p>
+            <span class="bestseller-price price" data-rsd="480" data-usd="4.25">480 RSD</span>
+          </div>
+        </article>
+
+        <article class="bestseller-card">
+          <div class="bestseller-img" style="background-image:url('gallery/1s.jpg');"></div>
+          <div class="bestseller-body">
+            <span class="bestseller-num">02</span>
+            <h3 class="bestseller-name" data-sr="Espresso" data-en="Espresso">Espresso</h3>
+            <p class="bestseller-desc"
+               data-sr="&#268;ist, intenzivan, savr&#353;en."
+               data-en="Pure, intense, perfect.">&#268;ist, intenzivan, savr&#353;en.</p>
+            <span class="bestseller-price price" data-rsd="250" data-usd="2.21">250 RSD</span>
+          </div>
+        </article>
+
+        <article class="bestseller-card">
+          <div class="bestseller-img" style="background-image:url('gallery/cofeshop10.jpg');"></div>
+          <div class="bestseller-body">
+            <span class="bestseller-num">03</span>
+            <h3 class="bestseller-name" data-sr="Doma&#263;a kafa" data-en="Domestic Coffee">Doma&#263;a kafa</h3>
+            <p class="bestseller-desc"
+               data-sr="Tradicionalna, gusta, jaka."
+               data-en="Traditional, thick, bold.">Tradicionalna, gusta, jaka.</p>
+            <span class="bestseller-price price" data-rsd="220" data-usd="1.95">220 RSD</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="bestsellers-cta">
+        <a href="#menu-section" class="btn-ghost-light">
+          <span data-sr="Pogledajte ceo meni" data-en="See full menu">Pogledajte ceo meni</span>
+          <span class="btn-arrow">&#x2192;</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu-section">
+    <div class="menu-inner">
+
+      <div class="menu-header">
+        <span class="section-label"
+              data-sr="Na&#353; Meni"
+              data-en="Our Menu">Na&#353; Meni</span>
+        <h2 class="section-heading menu-title"
+            data-sr="Ponuda"
+            data-en="Drinks &amp; Food">Ponuda</h2>
+        <p class="menu-subtitle"
+           data-sr="Sve&#382;e. Ru&#269;no pripremano. Svaki dan."
+           data-en="Fresh. Handcrafted. Every day.">Sve&#382;e. Ru&#269;no pripremano. Svaki dan.</p>
+      </div>
+
+      <div class="menu-grid">
+
+        <!-- Hot Drinks -->
+        <div class="menu-category">
+          <h3 class="menu-cat-title">
+            <span data-sr="Topli Napici" data-en="Hot Drinks">Topli Napici</span>
+          </h3>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Espresso" data-en="Espresso">Espresso</span>
+                <span class="menu-item-desc" data-sr="&#268;ist, intenzivan, savr&#353;en" data-en="Pure, intense, perfect">&#268;ist, intenzivan, savr&#353;en</span>
+              </div>
+              <span class="price" data-rsd="250" data-usd="2.21">250 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Doppio" data-en="Double Espresso">Doppio</span>
+                <span class="menu-item-desc" data-sr="Dupla doza energije" data-en="Double shot energy">Dupla doza energije</span>
+              </div>
+              <span class="price" data-rsd="300" data-usd="2.65">300 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Americano" data-en="Americano">Americano</span>
+                <span class="menu-item-desc" data-sr="Duga&#269;ak i pun" data-en="Long and full-bodied">Duga&#269;ak i pun</span>
+              </div>
+              <span class="price" data-rsd="300" data-usd="2.65">300 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Kapu&#263;ino" data-en="Cappuccino">Kapu&#263;ino</span>
+                <span class="menu-item-desc" data-sr="Kremast, savr&#353;en" data-en="Creamy, perfect">Kremast, savr&#353;en</span>
+              </div>
+              <span class="price" data-rsd="350" data-usd="3.10">350 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Latte" data-en="Latte">Latte</span>
+                <span class="menu-item-desc" data-sr="Mle&#269;na harmonija" data-en="Milky harmony">Mle&#269;na harmonija</span>
+              </div>
+              <span class="price" data-rsd="380" data-usd="3.36">380 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Flat White" data-en="Flat White">Flat White</span>
+                <span class="menu-item-desc" data-sr="Jak i gladak" data-en="Strong and smooth">Jak i gladak</span>
+              </div>
+              <span class="price" data-rsd="380" data-usd="3.36">380 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Makijato" data-en="Macchiato">Makijato</span>
+                <span class="menu-item-desc" data-sr="Espresso i pena" data-en="Espresso meets foam">Espresso i pena</span>
+              </div>
+              <span class="price" data-rsd="280" data-usd="2.48">280 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Filter Kafa" data-en="Filter Coffee">Filter Kafa</span>
+                <span class="menu-item-desc" data-sr="Pa&#382;ljivo filtrirano" data-en="Carefully filtered">Pa&#382;ljivo filtrirano</span>
+              </div>
+              <span class="price" data-rsd="280" data-usd="2.48">280 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Doma&#263;a Kafa" data-en="Domestic Coffee">Doma&#263;a Kafa</span>
+                <span class="menu-item-desc" data-sr="Tradicionalna, gusta" data-en="Traditional, thick">Tradicionalna, gusta</span>
+              </div>
+              <span class="price" data-rsd="220" data-usd="1.95">220 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Mocha" data-en="Mocha">Mocha</span>
+                <span class="menu-item-desc" data-sr="Espresso i &#269;okolada" data-en="Espresso meets chocolate">Espresso i &#269;okolada</span>
+              </div>
+              <span class="price" data-rsd="380" data-usd="3.36">380 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Bela Kafa" data-en="White Coffee">Bela Kafa</span>
+                <span class="menu-item-desc" data-sr="Espresso uz toplo mleko" data-en="Espresso with warm milk">Espresso uz toplo mleko</span>
+              </div>
+              <span class="price" data-rsd="260" data-usd="2.30">260 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Topla &#268;okolada" data-en="Hot Chocolate">Topla &#268;okolada</span>
+                <span class="menu-item-desc" data-sr="Gusta, prava, doma&#263;a" data-en="Thick, real, homemade">Gusta, prava, doma&#263;a</span>
+              </div>
+              <span class="price" data-rsd="350" data-usd="3.10">350 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Topli &#268;aj" data-en="Hot Tea">Topli &#268;aj</span>
+                <span class="menu-item-desc" data-sr="Crni, zeleni, vo&#263;ni" data-en="Black, green, fruit">Crni, zeleni, vo&#263;ni</span>
+              </div>
+              <span class="price" data-rsd="200" data-usd="1.77">200 RSD</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Cold Drinks -->
+        <div class="menu-category">
+          <h3 class="menu-cat-title">
+            <span data-sr="Hladni Napici" data-en="Cold Drinks">Hladni Napici</span>
+          </h3>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Ledeni Latte" data-en="Iced Latte">Ledeni Latte</span>
+                <span class="menu-item-desc" data-sr="Hladan, kremast, na&#353;" data-en="Cold, creamy, ours">Hladan, kremast, na&#353;</span>
+              </div>
+              <span class="price" data-rsd="420" data-usd="3.72">420 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Cold Brew" data-en="Cold Brew">Cold Brew</span>
+                <span class="menu-item-desc" data-sr="12 sati potapanja" data-en="12 hours steeped">12 sati potapanja</span>
+              </div>
+              <span class="price" data-rsd="450" data-usd="3.98">450 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Ledeni Americano" data-en="Iced Americano">Ledeni Americano</span>
+                <span class="menu-item-desc" data-sr="Osve&#382;avaju&#263;i i sna&#382;an" data-en="Refreshing and bold">Osve&#382;avaju&#263;i i sna&#382;an</span>
+              </div>
+              <span class="price" data-rsd="380" data-usd="3.36">380 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Ledeni Matcha" data-en="Iced Matcha">Ledeni Matcha</span>
+                <span class="menu-item-desc" data-sr="Sve&#382;a, zemljana, energi&#269;na" data-en="Fresh, earthy, energizing">Sve&#382;a, zemljana, energi&#269;na</span>
+              </div>
+              <span class="price" data-rsd="480" data-usd="4.25">480 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Iced Mocha" data-en="Iced Mocha">Iced Mocha</span>
+                <span class="menu-item-desc" data-sr="Hladna &#269;okoladna nota" data-en="Cold chocolate note">Hladna &#269;okoladna nota</span>
+              </div>
+              <span class="price" data-rsd="420" data-usd="3.72">420 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Frappuccino" data-en="Frappuccino">Frappuccino</span>
+                <span class="menu-item-desc" data-sr="Lediran, kremast" data-en="Blended, creamy">Lediran, kremast</span>
+              </div>
+              <span class="price" data-rsd="480" data-usd="4.25">480 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Ledeni Kapu&#263;ino" data-en="Iced Cappuccino">Ledeni Kapu&#263;ino</span>
+                <span class="menu-item-desc" data-sr="Pena na ledu" data-en="Foam over ice">Pena na ledu</span>
+              </div>
+              <span class="price" data-rsd="400" data-usd="3.54">400 RSD</span>
+            </li>
+            <li class="menu-item highlight-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Danyzcafe Signature" data-en="Danyzcafe Signature">Danyzcafe Signature</span>
+                <span class="menu-item-desc" data-sr="Na&#353; za&#353;titni napitak &#8212; pitajte nas" data-en="Our signature drink &#8212; ask us">Na&#353; za&#353;titni napitak &#8212; pitajte nas</span>
+              </div>
+              <span class="price" data-rsd="500" data-usd="4.42">500 RSD</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Juices & Water -->
+        <div class="menu-category">
+          <h3 class="menu-cat-title">
+            <span data-sr="Sokovi i Voda" data-en="Juices &amp; Water">Sokovi i Voda</span>
+          </h3>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Ce&#273;ena Pomorand&#382;a" data-en="Fresh Orange">Ce&#273;ena Pomorand&#382;a</span>
+                <span class="menu-item-desc" data-sr="Sve&#382;e ce&#273;ena" data-en="Freshly squeezed">Sve&#382;e ce&#273;ena</span>
+              </div>
+              <span class="price" data-rsd="380" data-usd="3.36">380 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Sok od Jabuke" data-en="Apple Juice">Sok od Jabuke</span>
+                <span class="menu-item-desc" data-sr="Prirodan, gust" data-en="Natural, full-bodied">Prirodan, gust</span>
+              </div>
+              <span class="price" data-rsd="280" data-usd="2.48">280 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Sok od Borovnice" data-en="Blueberry Juice">Sok od Borovnice</span>
+                <span class="menu-item-desc" data-sr="Slatko i tani&#269;no" data-en="Sweet and tannic">Slatko i tani&#269;no</span>
+              </div>
+              <span class="price" data-rsd="320" data-usd="2.83">320 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Limunada" data-en="Lemonade">Limunada</span>
+                <span class="menu-item-desc" data-sr="Sa mentom i medom" data-en="With mint and honey">Sa mentom i medom</span>
+              </div>
+              <span class="price" data-rsd="320" data-usd="2.83">320 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="&#272;us Mix" data-en="Juice Mix">&#272;us Mix</span>
+                <span class="menu-item-desc" data-sr="Pomorand&#382;a, &#353;argarepa, jabuka" data-en="Orange, carrot, apple">Pomorand&#382;a, &#353;argarepa, jabuka</span>
+              </div>
+              <span class="price" data-rsd="350" data-usd="3.10">350 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Rosa" data-en="Rosa">Rosa</span>
+                <span class="menu-item-desc" data-sr="Mineralna, 0.25L" data-en="Sparkling, 0.25L">Mineralna, 0.25L</span>
+              </div>
+              <span class="price" data-rsd="180" data-usd="1.59">180 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Aqua Viva" data-en="Aqua Viva">Aqua Viva</span>
+                <span class="menu-item-desc" data-sr="Negazirana, 0.25L" data-en="Still, 0.25L">Negazirana, 0.25L</span>
+              </div>
+              <span class="price" data-rsd="180" data-usd="1.59">180 RSD</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Soft Drinks -->
+        <div class="menu-category">
+          <h3 class="menu-cat-title">
+            <span data-sr="Sodovi" data-en="Soft Drinks">Sodovi</span>
+          </h3>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Coca-Cola" data-en="Coca-Cola">Coca-Cola</span>
+                <span class="menu-item-desc" data-sr="0.25L" data-en="0.25L">0.25L</span>
+              </div>
+              <span class="price" data-rsd="250" data-usd="2.21">250 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Coca-Cola Zero" data-en="Coca-Cola Zero">Coca-Cola Zero</span>
+                <span class="menu-item-desc" data-sr="0.25L" data-en="0.25L">0.25L</span>
+              </div>
+              <span class="price" data-rsd="250" data-usd="2.21">250 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Fanta" data-en="Fanta">Fanta</span>
+                <span class="menu-item-desc" data-sr="0.25L" data-en="0.25L">0.25L</span>
+              </div>
+              <span class="price" data-rsd="250" data-usd="2.21">250 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Sprite" data-en="Sprite">Sprite</span>
+                <span class="menu-item-desc" data-sr="0.25L" data-en="0.25L">0.25L</span>
+              </div>
+              <span class="price" data-rsd="250" data-usd="2.21">250 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Schweppes Tonik" data-en="Schweppes Tonic">Schweppes Tonik</span>
+                <span class="menu-item-desc" data-sr="0.25L" data-en="0.25L">0.25L</span>
+              </div>
+              <span class="price" data-rsd="320" data-usd="2.83">320 RSD</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Wines & Rakija -->
+        <div class="menu-category">
+          <h3 class="menu-cat-title">
+            <span data-sr="Vina i Rakija" data-en="Wines &amp; Rakija">Vina i Rakija</span>
+          </h3>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Tamjanika" data-en="Tamjanika">Tamjanika</span>
+                <span class="menu-item-desc" data-sr="Belo, mirisno &#8212; 0.2L" data-en="White, aromatic &#8212; 0.2L">Belo, mirisno &#8212; 0.2L</span>
+              </div>
+              <span class="price" data-rsd="380" data-usd="3.36">380 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Vranac" data-en="Vranac">Vranac</span>
+                <span class="menu-item-desc" data-sr="Crno, puno &#8212; 0.2L" data-en="Red, full-bodied &#8212; 0.2L">Crno, puno &#8212; 0.2L</span>
+              </div>
+              <span class="price" data-rsd="400" data-usd="3.54">400 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Prokupac Rose" data-en="Prokupac Ros&#233;">Prokupac Rose</span>
+                <span class="menu-item-desc" data-sr="Suvo, vo&#263;no &#8212; 0.2L" data-en="Dry, fruity &#8212; 0.2L">Suvo, vo&#263;no &#8212; 0.2L</span>
+              </div>
+              <span class="price" data-rsd="380" data-usd="3.36">380 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Chardonnay" data-en="Chardonnay">Chardonnay</span>
+                <span class="menu-item-desc" data-sr="Belo, suvo &#8212; 0.2L" data-en="White, dry &#8212; 0.2L">Belo, suvo &#8212; 0.2L</span>
+              </div>
+              <span class="price" data-rsd="420" data-usd="3.72">420 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Cabernet Sauvignon" data-en="Cabernet Sauvignon">Cabernet Sauvignon</span>
+                <span class="menu-item-desc" data-sr="Crno, hrastovo &#8212; 0.2L" data-en="Red, oak-aged &#8212; 0.2L">Crno, hrastovo &#8212; 0.2L</span>
+              </div>
+              <span class="price" data-rsd="450" data-usd="3.98">450 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="&#352;ljivovica" data-en="Plum Rakija">&#352;ljivovica</span>
+                <span class="menu-item-desc" data-sr="Doma&#263;a, klasik &#8212; 0.03L" data-en="Homemade, classic &#8212; 0.03L">Doma&#263;a, klasik &#8212; 0.03L</span>
+              </div>
+              <span class="price" data-rsd="280" data-usd="2.48">280 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Dunja" data-en="Quince Rakija">Dunja</span>
+                <span class="menu-item-desc" data-sr="Mirisna, blaga &#8212; 0.03L" data-en="Aromatic, gentle &#8212; 0.03L">Mirisna, blaga &#8212; 0.03L</span>
+              </div>
+              <span class="price" data-rsd="320" data-usd="2.83">320 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Kru&#353;ka" data-en="Pear Rakija">Kru&#353;ka</span>
+                <span class="menu-item-desc" data-sr="Vo&#263;na, sve&#382;a &#8212; 0.03L" data-en="Fruity, fresh &#8212; 0.03L">Vo&#263;na, sve&#382;a &#8212; 0.03L</span>
+              </div>
+              <span class="price" data-rsd="320" data-usd="2.83">320 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Loza" data-en="Grape Rakija">Loza</span>
+                <span class="menu-item-desc" data-sr="Grozd, suvo &#8212; 0.03L" data-en="Grape, dry &#8212; 0.03L">Grozd, suvo &#8212; 0.03L</span>
+              </div>
+              <span class="price" data-rsd="280" data-usd="2.48">280 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Medova&#269;a" data-en="Honey Rakija">Medova&#269;a</span>
+                <span class="menu-item-desc" data-sr="Sa medom, topla &#8212; 0.03L" data-en="With honey, warm &#8212; 0.03L">Sa medom, topla &#8212; 0.03L</span>
+              </div>
+              <span class="price" data-rsd="340" data-usd="3.01">340 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Aperol Spritz" data-en="Aperol Spritz">Aperol Spritz</span>
+                <span class="menu-item-desc" data-sr="Klasik aperitiv" data-en="Classic aperitif">Klasik aperitiv</span>
+              </div>
+              <span class="price" data-rsd="550" data-usd="4.87">550 RSD</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Sweets -->
+        <div class="menu-category">
+          <h3 class="menu-cat-title">
+            <span data-sr="Slatko" data-en="Sweets">Slatko</span>
+          </h3>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Kroasan" data-en="Croissant">Kroasan</span>
+                <span class="menu-item-desc" data-sr="Maslan, hrskav" data-en="Buttery, flaky">Maslan, hrskav</span>
+              </div>
+              <span class="price" data-rsd="200" data-usd="1.77">200 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Kifla sa &#268;okoladom" data-en="Chocolate Roll">Kifla sa &#268;okoladom</span>
+                <span class="menu-item-desc" data-sr="Topla i slatka" data-en="Warm and sweet">Topla i slatka</span>
+              </div>
+              <span class="price" data-rsd="220" data-usd="1.95">220 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Banana Hleb" data-en="Banana Bread">Banana Hleb</span>
+                <span class="menu-item-desc" data-sr="Doma&#263;i recept" data-en="Homemade recipe">Doma&#263;i recept</span>
+              </div>
+              <span class="price" data-rsd="250" data-usd="2.21">250 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Kola&#269; Dana" data-en="Cake of the Day">Kola&#269; Dana</span>
+                <span class="menu-item-desc" data-sr="Pitajte nas danas" data-en="Ask us today">Pitajte nas danas</span>
+              </div>
+              <span class="price" data-rsd="300" data-usd="2.65">300 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Tiramisu" data-en="Tiramisu">Tiramisu</span>
+                <span class="menu-item-desc" data-sr="Mascarpone i espresso" data-en="Mascarpone and espresso">Mascarpone i espresso</span>
+              </div>
+              <span class="price" data-rsd="420" data-usd="3.72">420 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Cheesecake" data-en="Cheesecake">Cheesecake</span>
+                <span class="menu-item-desc" data-sr="Kremast, klasik" data-en="Creamy, classic">Kremast, klasik</span>
+              </div>
+              <span class="price" data-rsd="420" data-usd="3.72">420 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Brownie sa Orasima" data-en="Walnut Brownie">Brownie sa Orasima</span>
+                <span class="menu-item-desc" data-sr="Topao, gust" data-en="Warm, dense">Topao, gust</span>
+              </div>
+              <span class="price" data-rsd="380" data-usd="3.36">380 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Krem&#353;nita" data-en="Cream Slice">Krem&#353;nita</span>
+                <span class="menu-item-desc" data-sr="Vanila i li&#353;&#263;asto testo" data-en="Vanilla and puff pastry">Vanila i li&#353;&#263;asto testo</span>
+              </div>
+              <span class="price" data-rsd="350" data-usd="3.10">350 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="&#352;trudla od Jabuke" data-en="Apple Strudel">&#352;trudla od Jabuke</span>
+                <span class="menu-item-desc" data-sr="Topla, doma&#263;a" data-en="Warm, homemade">Topla, doma&#263;a</span>
+              </div>
+              <span class="price" data-rsd="320" data-usd="2.83">320 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Pita sa Vi&#353;njama" data-en="Sour Cherry Pie">Pita sa Vi&#353;njama</span>
+                <span class="menu-item-desc" data-sr="Bakin recept" data-en="Grandma&#8217;s recipe">Bakin recept</span>
+              </div>
+              <span class="price" data-rsd="350" data-usd="3.10">350 RSD</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <span class="menu-item-name" data-sr="Affogato" data-en="Affogato">Affogato</span>
+                <span class="menu-item-desc" data-sr="Espresso preko sladoleda" data-en="Espresso over ice cream">Espresso preko sladoleda</span>
+              </div>
+              <span class="price" data-rsd="420" data-usd="3.72">420 RSD</span>
+            </li>
+          </ul>
+        </div>
+
+      </div><!-- /menu-grid -->
+
+      <p class="menu-allergen"
+         data-sr="* Informacije o alergenima dostupne na zahtev."
+         data-en="* Allergen information available on request.">
+        * Informacije o alergenima dostupne na zahtev.
+      </p>
+
+      <div class="menu-cta-row">
+        <a href="#booking-section" class="btn-ghost-light">
+          <span data-sr="Rezervi&#353;ite Sto" data-en="Book a Table">Rezervi&#353;ite Sto</span>
+          <span class="btn-arrow">&#x2192;</span>
+        </a>
+        <a href="#about-section" class="btn-ghost-light">
+          <span data-sr="O Nama" data-en="About Us">O Nama</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section id="booking-section">
+    <div class="booking-inner">
+
+      <div class="booking-header">
+        <span class="section-label"
+              data-sr="Rezervacija"
+              data-en="Reservation">Rezervacija</span>
+        <h2 class="section-heading booking-title"
+            data-sr="Rezervi&#353;ite Sto"
+            data-en="Book a Table">Rezervi&#353;ite Sto</h2>
+        <p class="booking-sub"
+           data-sr="Rezervi&#353;ite i u&#382;ivajte u autenti&#269;nom iskustvu kafe."
+           data-en="Reserve your spot and enjoy an authentic coffee experience.">
+          Rezervi&#353;ite i u&#382;ivajte u autenti&#269;nom iskustvu kafe.
+        </p>
+      </div>
+
+      <form id="booking-form" novalidate>
+        <input type="hidden" name="access_key" value="a0d70d63-68ce-4f6e-b706-85ed5f24cddb" />
+        <input type="hidden" name="subject" value="Nova rezervacija &#8212; danyzcafe" />
+        <input type="hidden" name="redirect" value="false" />
+        <input type="hidden" name="from_name" value="danyzcafe Booking" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="field-name"
+                   data-sr="Puno ime" data-en="Full Name">Puno ime</label>
+            <input type="text" id="field-name" name="name"
+                   placeholder="Npr. Marija Nikoli&#263;"
+                   data-sr="Npr. Marija Nikoli&#263;" data-en="e.g. Jane Smith"
+                   autocomplete="name" />
+            <span class="field-error" id="err-name"></span>
+          </div>
+        </div>
+
+        <div class="form-row form-row--two">
+          <div class="form-group">
+            <label class="form-label" for="field-email"
+                   data-sr="Email adresa" data-en="Email address">Email adresa</label>
+            <input type="email" id="field-email" name="email"
+                   placeholder="ime@email.com"
+                   data-sr="ime@email.com" data-en="you@email.com"
+                   autocomplete="email" />
+            <span class="field-error" id="err-email"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="field-phone"
+                   data-sr="Broj telefona" data-en="Phone number">Broj telefona</label>
+            <input type="tel" id="field-phone" name="phone"
+                   placeholder="+381 60 000 0000"
+                   data-sr="+381 60 000 0000" data-en="+1 555 000 0000"
+                   autocomplete="tel" />
+            <span class="field-error" id="err-phone"></span>
+          </div>
+        </div>
+
+        <div class="form-row form-row--two">
+          <div class="form-group">
+            <label class="form-label" for="field-date"
+                   data-sr="Datum" data-en="Date">Datum</label>
+            <input type="date" id="field-date" name="date" />
+            <span class="field-error" id="err-date"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="field-guests"
+                   data-sr="Broj gostiju" data-en="Number of guests">Broj gostiju</label>
+            <select id="field-guests" name="guests">
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6+">6+</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group form-group--full">
+          <label class="form-label"
+                 data-sr="Izaberite vreme" data-en="Select time">Izaberite vreme</label>
+          <p class="time-note"
+             data-sr="Zauzeta vremena nisu dostupna za izbor."
+             data-en="Unavailable times cannot be selected.">
+            Zauzeta vremena nisu dostupna za izbor.
+          </p>
+          <div class="time-slots" id="time-slots"></div>
+          <input type="hidden" id="field-time" name="time" />
+          <span class="field-error" id="err-time"></span>
+        </div>
+
+        <div class="form-submit-row">
+          <button type="submit" class="btn-ghost-light btn-submit" id="submit-btn">
+            <span data-sr="REZERVI&#352;ITE STO" data-en="BOOK TABLE">REZERVI&#352;ITE STO</span>
+            <span class="btn-arrow">&#x2192;</span>
+          </button>
+        </div>
+      </form>
+
+      <div id="booking-success" class="booking-success hidden">
+        <div class="success-icon">&#x2713;</div>
+        <p data-sr="Hvala! Va&#353;a rezervacija je primljena. Kontaktira&#263;emo vas uskoro za potvrdu."
+           data-en="Thank you! Your reservation has been received. We'll contact you shortly to confirm.">
+          Hvala! Va&#353;a rezervacija je primljena. Kontaktira&#263;emo vas uskoro za potvrdu.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about-section">
+    <div class="about-inner">
+      <div class="about-text">
+        <span class="section-label"
+              data-sr="O Nama"
+              data-en="About Us">O Nama</span>
+        <h2 class="about-heading"
+            data-sr="Vi&#353;e od kafea."
+            data-en="More than a caf&#233;.">Vi&#353;e od kafea.</h2>
+        <p class="about-body"
+           data-sr="danyzcafe je mesto gde svaka kap ima svoju pri&#269;u. Verujemo u pa&#382;ljivu pripremu, kvalitetne sastojke i toplinu koja ostaje dugo nakon poslednjeg gutljaja. Nije to samo kafa &#8212; to je ritual."
+           data-en="danyzcafe is a place where every drop tells a story. We believe in careful craft, quality ingredients, and the warmth that lingers long after the last sip. It&#8217;s not just coffee &#8212; it&#8217;s a ritual.">
+          danyzcafe je mesto gde svaka kap ima svoju pri&#269;u. Verujemo u pa&#382;ljivu pripremu, kvalitetne sastojke i toplinu koja ostaje dugo nakon poslednjeg gutljaja. Nije to samo kafa &#8212; to je ritual.
+        </p>
+      </div>
+      <div class="about-portrait">
+        <img src="gallery/restaurantttttt1.jpg" alt="danyzcafe interior" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section (horizontal cinematic scroll) -->
+  <section id="gallery-section">
+    <div class="gallery-section-inner">
+      <div class="gallery-section-header">
+        <span class="section-label gallery-section-label"
+              data-sr="003 / Galerija"
+              data-en="003 / Gallery">003 / Galerija</span>
+        <h2 class="gallery-section-heading"
+            data-sr="Galerija."
+            data-en="Gallery.">Galerija.</h2>
+        <p class="gallery-section-sub"
+           data-sr="Prelistajte trenutke u na&#353;em kafeu."
+           data-en="Drift through moments in our caf&#233;.">
+          Prelistajte trenutke u na&#353;em kafeu.
+        </p>
+      </div>
+
+      <div class="gallery-track" id="gallery-track">
+        <figure class="gallery-slide"><img src="gallery/coffeilo5.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-slide"><img src="gallery/1s.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-slide"><img src="gallery/cofeshop6.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-slide"><img src="gallery/3a.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-slide"><img src="gallery/4s.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-slide"><img src="gallery/cofeshop10.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-slide"><img src="gallery/2s.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-slide"><img src="gallery/cofeshop7.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-slide"><img src="gallery/5s.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-slide"><img src="gallery/cofeshop11.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-slide"><img src="gallery/photo_6048725623078850236_y.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-slide"><img src="gallery/restaurantttttt1.jpg" alt="" loading="lazy" /></figure>
+      </div>
+
+      <div class="gallery-footer-row">
+        <span class="gallery-hint"
+              data-sr="Prevucite za pregled"
+              data-en="Drag to explore">Prevucite za pregled</span>
+        <span class="gallery-counter">
+          <span id="gallery-current">01</span><span class="gallery-counter-sep">/</span><span id="gallery-total">12</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Section -->
+  <section id="location-section">
+    <div class="location-inner">
+      <span class="section-label"
+            data-sr="Prona&#273;ite Nas"
+            data-en="Find Us">Prona&#273;ite Nas</span>
+      <h2 class="location-heading"
+          data-sr="Na&#353;a Lokacija"
+          data-en="Our Location">Na&#353;a Lokacija</h2>
+      <p class="location-address"
+         data-sr="&#352;abac, Srbija"
+         data-en="&#352;abac, Serbia">&#352;abac, Srbija</p>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d45737.47!2d19.614!3d44.7475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a1bfc2ae44a91%3A0x5e6e3ece3e6c8c7e!2sSabac%2C%20Serbia!5e0!3m2!1ssr!2srs!4v1699000000000"
+          width="100%" height="400"
+          style="border:0;" allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="danyzcafe lokacija">
+        </iframe>
+      </div>
+
+      <div class="social-row">
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4.5"/>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="social-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+          </svg>
+        </a>
+        <a href="mailto:popovicd607@gmail.com" aria-label="Email" class="social-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <polyline points="2,7 12,14 22,7"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-logo">danyzcafe</span>
+      <p class="footer-copy"
+         data-sr="&#169; 2025 danyzcafe. Sva prava zadr&#382;ana."
+         data-en="&#169; 2025 danyzcafe. All rights reserved.">
+        &#169; 2025 danyzcafe. Sva prava zadr&#382;ana.
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

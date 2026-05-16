@@ -1,0 +1,5 @@
+fix_watermark.py
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

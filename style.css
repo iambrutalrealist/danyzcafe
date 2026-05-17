@@ -119,7 +119,7 @@ nav {
   content: '';
   position: absolute;
   inset: -40px;
-  background: url('../gallery/photo_6048725623078850236_y.jpg') center/cover no-repeat;
+  background: url('photo_6048725623078850236_y.jpg') center/cover no-repeat;
   filter: blur(10px);
   transform: scale(1.05);
   z-index: 0;
@@ -316,7 +316,7 @@ nav {
   content: '';
   position: absolute;
   inset: -40px;
-  background: url('../gallery/photo_6048725623078850236_y.jpg') center/cover no-repeat;
+  background: url('photo_6048725623078850236_y.jpg') center/cover no-repeat;
   filter: blur(6px);
   transform: scale(1.05);
   z-index: 0;
@@ -945,7 +945,7 @@ select {
   content: '';
   position: absolute;
   inset: -40px;
-  background: url('../gallery/restaurantttttt1.jpg') center/cover no-repeat;
+  background: url('restaurantttttt1.jpg') center/cover no-repeat;
   filter: blur(8px);
   transform: scale(1.05);
   z-index: 0;
